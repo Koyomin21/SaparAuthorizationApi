@@ -10,5 +10,6 @@ namespace SaparAuthorization.Domain.Repositories.UsersRepository
     public interface IUserRepository
     {
         User FindById(long id);
+        User FindByEmail(string email);
     }
 }

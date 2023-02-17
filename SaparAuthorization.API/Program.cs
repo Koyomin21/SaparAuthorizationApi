@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using SaparAuthorization.Api.Configurations;
+using SaparAuthorization.Business;
 using SaparAuthorization.Domain;
 using System.Runtime.CompilerServices;
 
@@ -21,6 +23,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.ConfigureDbContext(builder.Configuration.GetConnectionString("MainConnection"));
 builder.Services.ConfigureServices();
+builder.Services.AddAutoMapper(typeof(EntityToModelMappingProfile));
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = 
+});
 
 var app = builder.Build();
 
@@ -33,6 +41,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -1,25 +1,34 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SaparAuthorization.Api.DTOs;
+using SaparAuthorization.Business.Models;
+using SaparAuthorization.Business.Services.Users;
 using SaparAuthorization.Domain.Repositories;
 
 namespace SaparAuthorization.Api.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private IRepositoryWrapper _repositoryWrapper;
+        private readonly IUserService _userService;
+        
 
-        public AuthenticationController(IRepositoryWrapper repositoryWrapper)
+        public AuthenticationController(IUserService userService)
         {
-            _repositoryWrapper = repositoryWrapper;
+            _userService = userService;
         }
 
-        [HttpGet]
-        public String Get()
+
+        [HttpPost("login")]
+        public UserModel Login(LoginDTO loginDTO)
         {
-            string email = _repositoryWrapper.UserRepository.FindById(1)?.Email ?? "NOT FOUND";
-            return email;
+            if (!loginDTO.IsValid()) return new UserModel();
+
+            UserModel userModel = _userService.GetUserByEmail(loginDTO.Email);
+            return userModel;
         }
     }
 }

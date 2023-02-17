@@ -13,9 +13,14 @@ namespace SaparAuthorization.Domain.Repositories.UsersRepository
         {
         }
 
+        public User FindByEmail(string email)
+        {
+            return FindByCondition(u => u.Email == email).FirstOrDefault();
+        }
+
         public User FindById(long id)
         {
-            return this.FindByCondition(u => u.Id == id).FirstOrDefault();
+            return FindByCondition(u => u.Id == id).FirstOrDefault();
         }
     }
 }
