@@ -22,7 +22,7 @@ namespace SaparAuthorization.Domain
             modelBuilder.Entity<User>()
             .HasOne(u => u.Role)
             .WithMany(r => r.Users)
-            .HasForeignKey(u => u.RoleId);
+            .HasForeignKey(u => u.RoleId).IsRequired();
 
             //base.OnModelCreating(modelBuilder);
         }

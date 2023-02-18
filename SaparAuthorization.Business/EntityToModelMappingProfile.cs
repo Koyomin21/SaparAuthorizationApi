@@ -18,6 +18,11 @@ namespace SaparAuthorization.Business
                 .ForMember(
                 dest => dest.Role,
                 opt => opt.MapFrom(src => src.Role));
+            CreateMap<UserModel, User>()
+                .ForMember(
+                dest => dest.RoleId,
+                opt => opt.MapFrom(src => src.Role.Id));
+
         }
     }
 }

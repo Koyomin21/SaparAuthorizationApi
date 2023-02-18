@@ -32,13 +32,19 @@ namespace SaparAuthorization.Api.Controllers
         }
 
         [HttpPost("register")]
-        public UserModel Register()
+        public bool Register(RegistrationDTO registrationDTO )
         {
-            return new UserModel();
+            if(!registrationDTO.IsValid()) 
+                throw new Exception("Validation error!");
+
+            UserModel userModel = _mapper.Map<UserModel>(registrationDTO);
+            _authenticationService.RegisterUser(userModel);
+
+            return true;
         }
 
         [HttpPost("login")]
-        public TokenViewModel Login(LoginDTO loginDTO)
+        public ApiResponseModel<TokenViewModel> Login(LoginDTO loginDTO)
         {
             if (!loginDTO.IsValid())
                 throw new Exception("Validation error!");
@@ -47,7 +53,8 @@ namespace SaparAuthorization.Api.Controllers
             UserModel userModel = _authenticationService.AuthenticateUser(_mapper.Map<AuthenticationModel>(loginDTO));
             string token = _authenticationService.GenerateJwtToken(userModel);
 
-            return new TokenViewModel { Token = token };
+            return ApiResponseModel<TokenViewModel>.Successfull(new TokenViewModel { Token = token});
         }
+
     }
 }

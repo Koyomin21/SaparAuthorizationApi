@@ -14,6 +14,7 @@ namespace SaparAuthorization.Api
         public DtoToModelsMappingProfile()
         {
             CreateMap<LoginDTO, AuthenticationModel>();
+            CreateMap<RegistrationDTO, UserModel>();
         }
     }
 }

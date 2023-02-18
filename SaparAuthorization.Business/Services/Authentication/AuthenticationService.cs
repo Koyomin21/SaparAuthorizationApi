@@ -63,5 +63,14 @@ namespace SaparAuthorization.Business.Services.Authentication
 
             return tokenString;
         }
+
+        public void RegisterUser(UserModel model)
+        {
+            if (_userService.GetUserByEmail(model.Email) is not null)
+                throw new Exception("User with such email already exists!");
+
+            model.Role = new RoleModel { Id = 2 };
+            _userService.CreateUser(model);
+        }
     }
 }

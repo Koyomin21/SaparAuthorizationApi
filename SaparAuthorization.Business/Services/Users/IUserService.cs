@@ -10,5 +10,6 @@ namespace SaparAuthorization.Business.Services.Users
     public interface IUserService
     {
         UserModel GetUserByEmail(string email);
+        void CreateUser(UserModel userModel);
     }
 }

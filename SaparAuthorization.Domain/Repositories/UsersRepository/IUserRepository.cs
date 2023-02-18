@@ -11,5 +11,7 @@ namespace SaparAuthorization.Domain.Repositories.UsersRepository
     {
         User FindById(long id);
         User FindByEmail(string email);
+
+        void CreateUser(User user);
     }
 }

@@ -12,5 +12,7 @@ namespace SaparAuthorization.Business.Services.Authentication
         UserModel AuthenticateUser(AuthenticationModel model);
         void CheckUserCredentials(AuthenticationModel authModel, UserModel userModel);
         string GenerateJwtToken(UserModel model);
+
+        void RegisterUser(UserModel model);
     }
 }

@@ -14,6 +14,14 @@ namespace SaparAuthorization.Domain.Repositories.UsersRepository
         {
         }
 
+        public void CreateUser(User user)
+        {
+            if (user.Id > 0)
+                throw new Exception("Cannot insert user with id > 0");
+
+            Create(user);
+        }
+
         public User FindByEmail(string email)
         {
             return FindByCondition(u => u.Email == email).Include(u => u.Role).FirstOrDefault();

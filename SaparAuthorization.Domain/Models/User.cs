@@ -26,15 +26,15 @@ namespace SaparAuthorization.Domain.Models
         public string LastName { get; set; }
 
         [Column(name: "isdeleted")]
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; } = false;
         [NotMapped]
-        public bool IsVerified { get; set; }
+        public bool IsVerified { get; set; } = false;
 
         [Column(name: "birthdate")]
-        public DateOnly BirthDate { get; set; }
+        public DateOnly? BirthDate { get; set; }
 
         [NotMapped]
-        public DateTime CreateDate { get; set; }
+        public DateTime CreateDate { get; set; } = DateTime.UtcNow;
         [NotMapped]
 
         public int VerificationCode { get; set; }

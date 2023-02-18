@@ -19,8 +19,8 @@ namespace SaparAuthorization.Business.Models
 
         public string LastName { get; set; }
 
-        public bool IsDeleted { get; set; }
-        public bool IsVerified { get; set; }
+        public bool IsDeleted { get; set; } = false;
+        public bool IsVerified { get; set; } = false;
 
         public DateOnly BirthDate { get; set; }
 
