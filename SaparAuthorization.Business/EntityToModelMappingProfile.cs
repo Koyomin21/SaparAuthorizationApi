@@ -13,7 +13,11 @@ namespace SaparAuthorization.Business
     {
         public EntityToModelMappingProfile()
         {
-            CreateMap<User, UserModel>();
+            CreateMap<Role, RoleModel>();
+            CreateMap<User, UserModel>()
+                .ForMember(
+                dest => dest.Role,
+                opt => opt.MapFrom(src => src.Role));
         }
     }
 }

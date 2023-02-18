@@ -17,10 +17,14 @@ namespace SaparAuthorization.Domain
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("public");
-            modelBuilder.Entity<User>().ToTable("users", "public");
+            modelBuilder.Entity<Role>().ToTable("roles");
+            modelBuilder.Entity<User>().ToTable("users");
             modelBuilder.Entity<User>()
             .HasOne(u => u.Role)
-            .WithMany(r => r.Users);
+            .WithMany(r => r.Users)
+            .HasForeignKey(u => u.RoleId);
+
+            //base.OnModelCreating(modelBuilder);
         }
 
     }

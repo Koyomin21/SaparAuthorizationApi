@@ -12,7 +12,7 @@ namespace SaparAuthorization.Api.DTOs
         [Required]
         [MinLength(8)]
         [MaxLength(20)]
-        [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")]
+        [RegularExpression("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}$")]
         public string Password { get; set; }
 
         public bool IsValid()

@@ -1,4 +1,5 @@
 ﻿using SaparAuthorization.Business.Services.Users;
+using SaparAuthorization.Business.Services.Authentication;
 using SaparAuthorization.Domain.Repositories;
 
 namespace SaparAuthorization.Api.Configurations
@@ -9,6 +10,7 @@ namespace SaparAuthorization.Api.Configurations
         {
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
         }
 
     }
